@@ -54,7 +54,7 @@ BEGIN
   BEGIN
     f := n * f;
     n := n - 1;
-    CALL fact
+    CALL gcd
   END
 END;
 

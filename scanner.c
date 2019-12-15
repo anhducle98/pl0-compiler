@@ -31,7 +31,7 @@ void initialize_scanner() {
 void get_char() {
     current_char = fgetc(file);
     if (current_char == EOF) return;
-    putc(current_char, stdout);
+    if (num_errors == 0) putc(current_char, stdout);
     ++col_number;
     if (current_char == '\n') {
         ++line_number;

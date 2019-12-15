@@ -1,6 +1,8 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+#include <stdio.h>
+
 #define MAX_IDENT_LEN 10
 #define ASCII_LIMIT 128
 #define NUM_KEYWORDS 15
@@ -11,6 +13,20 @@ typedef enum {
     PROCEDURE, PROGRAM, THEN, TO, VAR, WHILE, PLUS, MINUS, TIMES, SLASH, EQU, NEQ,
     LSS, LEQ, GTR, GEQ, LPARENT, RPARENT, LBRACK, RBRACK, PERIOD, COMMA, SEMICOLON, ASSIGN, PERCENT
 } TokenType;
+
+typedef enum {
+    TYPE_ERROR,
+    TYPE_VOID,
+    TYPE_INT,
+    TYPE_BOOL,
+    TYPE_ARRAY
+} ObjectType;
+
+typedef enum {
+    TYPE_VARIABLE,
+    TYPE_PROCEDURE,
+    TYPE_CONSTANT
+} SymbolType;
 
 static const TokenType KEYWORDS_TYPE[NUM_KEYWORDS] = {BEGIN, END, IF, THEN, WHILE, DO, CALL, ODD, TO, CONST, VAR, PROCEDURE, PROGRAM, ELSE, FOR};
 static const char* TOKEN_TEXT[] = {
@@ -33,5 +49,6 @@ char identifier[MAX_IDENT_LEN + 1];
 int identifier_length;
 int line_number;
 int col_number;
+int num_errors;
 
 #endif // GLOBAL_H

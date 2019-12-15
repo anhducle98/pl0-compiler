@@ -20,6 +20,7 @@ begin
 end;
 
 procedure primes;
+var n;
 begin
     arg := 2;
     for arg := 1 to n do
