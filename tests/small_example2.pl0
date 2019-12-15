@@ -1,0 +1,6 @@
+program example;
+
+begin
+	a := b + 123456789012;
+    call isprime@;
+end.
