@@ -42,11 +42,14 @@ void factor(ObjectInfo *info) {
     info->symbol_type = TYPE_CONSTANT;
     info->object_type = TYPE_INT;
     if (token == IDENT) {
-        info->symbol_type = TYPE_VARIABLE;
         SymbolTableEntry *entry = get_entry_by_name(symbol_table, identifier);
         if (!entry) {
             add_error(concat(identifier, " was not declared in this scope"));
             set_type_error(info);
+        }
+        if (entry) {
+            info->symbol_type = entry->symbol_type;
+            info->object_type = entry->object_type;
         }
         if (entry && entry->symbol_type != TYPE_VARIABLE && entry->symbol_type != TYPE_CONSTANT) {
             add_error(concat(entry->name, " must be a VARIABLE or a CONSTANT"));
@@ -58,6 +61,7 @@ void factor(ObjectInfo *info) {
                 add_error(concat(entry->name, " must be an ARRAY VARIABLE"));
                 set_type_error(info);
             }
+            info->object_type = TYPE_INT;
             next_token();
 
             ObjectInfo expression_info;
@@ -205,6 +209,7 @@ void statement(ObjectInfo *info) {
             SymbolTableEntry *entry = get_entry_by_name(symbol_table, identifier);
             if (!entry) {
                 add_error(concat(identifier, " was not declared in this scope"));
+                exit(-1);
             }
             if (entry && entry->symbol_type != TYPE_PROCEDURE) {
                 add_error(concat(entry->name, " must be a PROCEDURE"));
@@ -214,9 +219,12 @@ void statement(ObjectInfo *info) {
                 next_token();
                 ObjectInfo expression_info;
                 expression(&expression_info);
-                if (entry->subproc_symtab->pool[num_args_passed].is_reference && expression_info.symbol_type != TYPE_VARIABLE) {
+                if (entry && num_args_passed >= entry->subproc_symtab->num_args) {
+                    add_error(concat("wrong number of arguments for call to ", entry->name));
+                } else if (entry && entry->subproc_symtab->pool[num_args_passed].is_reference && expression_info.symbol_type != TYPE_VARIABLE) {
                     add_error("argument must be a VARIABLE");
                 }
+
                 num_args_passed++;
                 while (token == COMMA) {
                     next_token();
@@ -421,6 +429,7 @@ void block() {
                         SymbolTableEntry* arg = add_entry(symbol_table, make_entry(identifier, TYPE_VARIABLE));
                         if (!arg) {
                             add_error(concat(identifier, " already declared in this scope"));
+                            exit(-1);
                         }
                         symbol_table->num_args++;
                         arg->is_reference = is_reference;
