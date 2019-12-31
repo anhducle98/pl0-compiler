@@ -1,0 +1,7 @@
+program callvar;
+
+var a;
+
+begin
+	call a;
+end.

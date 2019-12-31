@@ -1,0 +1,14 @@
+J 1
+INT 5
+LA 0 4
+LC 5
+ST
+LA 0 4
+LC 10
+LV 0 4
+MUL
+ST
+LV 0 4
+WRI
+WLN
+HLT

@@ -18,7 +18,7 @@ var i, ret, b[10];
     begin
         for i := 1 to n do
         begin
-            call getmin(mn, a[i]);
+            call getmin(a[i], max + a[n]);
         end;
     end;
 begin
@@ -32,4 +32,5 @@ end;
 
 begin
     call sum(a[1]);
+    a[max] := a[1];
 end.

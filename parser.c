@@ -237,7 +237,7 @@ void statement(ObjectInfo *info) {
                     error("expected ')'");
                 }
             }
-            if (entry && num_args_passed != entry->subproc_symtab->num_args) {
+            if (entry && entry->symbol_type == TYPE_PROCEDURE && num_args_passed != entry->subproc_symtab->num_args) {
                 add_error(concat("wrong number of arguments for call to ", entry->name));
             }
             info->object_type = TYPE_VOID;
