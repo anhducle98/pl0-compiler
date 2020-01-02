@@ -727,6 +727,7 @@ int main(int argc, char **argv) {
     }
 
     if (num_errors == 0) {
+        fprintf(stdout, "\n");
         for (int i = 0; i < num_instructions; ++i) {
             if (!output_to_file) fprintf(stdout, "%2d: ", i);
             fprintf(stdout, "%s", ASM[code[i].op]);
