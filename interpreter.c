@@ -36,15 +36,16 @@ void read_asm(FILE *f) {
 
 int base(int b, int p) {
     int c = b;
-    while (p) {
-        p = s[c + 3];
+    while (p > 0) {
+        c = s[c + 3];
         --p;
     }
-    return p;
+    return c;
 }
 
 void run() {
     int pc = 0, t = -1, b = 0;
+
     while (pc < n) {
         int op = code[pc].op;
         int p = code[pc].p;
@@ -83,7 +84,7 @@ void run() {
             case OP_CALL:
                 s[t + 2] = b; s[t + 3] = pc;
                 s[t + 4] = base(b, p); b = t + 1;
-                pc = q - 1; t += 4;
+                pc = q - 1;
                 break;
             case OP_EP:
                 t = b - 1; pc = s[b + 2]; b = s[b + 1];
@@ -146,6 +147,10 @@ void run() {
                 assert(0);
         }
         ++pc;
+        
+        // printf("pc=%d t=%d b=%d stack=[", pc, t, b);
+        // for (int i = 0; i <= t; ++i) printf("%d ", s[i]);
+        // printf("]\n\n");    
     }
 }
 

@@ -1,0 +1,23 @@
+program sum;
+var a, b, c;
+
+procedure getsum(x; y; var z);
+begin
+    z := x + y;
+end;
+
+begin
+    (*a := 123;
+    b := 456;*)
+
+    call readi(a);
+    call readi(b);
+    
+    call getsum(a, b, c);
+    call writei(c);
+    call writeln;
+
+    c := a * b;
+    call writei(c);
+    call writeln;
+end.

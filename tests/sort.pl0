@@ -1,0 +1,28 @@
+program bubble;
+
+var n, a[1000], i, j;
+
+procedure swap(var x; var y);
+var t;
+begin
+    t := x;
+    x := y;
+    y := t;
+end;
+
+begin
+    call readi(n);
+    for i:=1 to n do
+        call readi(a[i]);
+
+    for i:=1 to n do
+        for j:=i+1 to n do
+            if a[i] > a[j] then
+                call swap(a[i], a[j]);
+
+    for i:=1 to n do
+    begin
+        call writei(a[i]);
+        call writeln;
+    end;
+end.

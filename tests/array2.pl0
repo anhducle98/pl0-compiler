@@ -7,7 +7,7 @@ procedure sum(var n);
 var i, ret, b[10];
     procedure min(n);
     var i, mn;
-        procedure getmin(var x; y);
+        procedure getmin(var x; var y);
         begin
             if x > y then x := y;
             while odd y do
@@ -18,7 +18,7 @@ var i, ret, b[10];
     begin
         for i := 1 to n do
         begin
-            call getmin(a[i], max + a[n]);
+            call getmin(a[i], a[n]);
         end;
     end;
 begin

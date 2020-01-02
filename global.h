@@ -42,8 +42,8 @@ typedef enum {
 
 // ASM BEGIN
 #define NUM_OPCODES 32
-#define STACK_LIMIT 1000
-#define CODE_LIMIT 1000
+#define STACK_LIMIT 1000000
+#define CODE_LIMIT 1000000
 
 typedef enum {
     NOOP = 0, OP_LA, OP_LV, OP_LC, OP_LI, OP_INT, OP_DCT,

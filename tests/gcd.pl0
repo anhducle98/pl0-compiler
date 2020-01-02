@@ -1,0 +1,34 @@
+program calcgcd;
+var x, y;
+
+procedure gcd(a; b; var g);
+    procedure minus(var x; y);
+    begin
+        x := x - y;
+    end;
+
+    procedure subtract(var p; var q);
+    begin
+        if p > q then
+            call minus(p, q)
+        else
+            call minus(q, p);
+    end;
+    
+begin
+    while a <> b do
+    begin
+        call subtract(a, b);
+        call writei(a); call writeln;
+        call writei(b); call writeln;
+    end;
+    g := a;
+end;
+
+begin
+    call readi(x);
+    call readi(y);
+    call gcd(x, y, x);
+    call writei(x);
+    call writeln;
+end.

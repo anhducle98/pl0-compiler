@@ -1,0 +1,44 @@
+program gcdarray;
+var a[1000], n, i, j, g, sum;
+
+procedure gcd(a; b; var g);
+    procedure minus(var x; y);
+    begin
+        x := x - y;
+    end;
+
+    procedure subtract(var p; var q);
+    begin
+        if p > q then
+            call minus(p, q)
+        else
+            call minus(q, p);
+    end;
+    
+begin
+    while a <> b do
+    begin
+        call subtract(a, b);
+        (*call writei(a); call writeln;
+        call writei(b); call writeln;*)
+    end;
+    g := a;
+end;
+
+
+begin
+    call readi(n);
+    for i := 1 to n do
+        call readi(a[i]);
+
+    sum := 0;
+    for i := 1 to n do
+        for j := i + 1 to n do
+        begin
+            call gcd(a[i], a[j], g);
+            sum := sum + g;
+        end;
+
+    call writei(sum);
+    call writeln;
+end.
