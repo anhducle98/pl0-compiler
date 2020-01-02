@@ -1,4 +1,4 @@
-# Simple recursive descent parser for PL/0
+# Simple compiler for PL/0
 
 # Build
   `$ ./make.sh`
