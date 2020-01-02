@@ -10,16 +10,15 @@ typedef struct ObjectInfo ObjectInfo;
 struct ObjectInfo {
     ObjectType object_type;
     SymbolType symbol_type;
-    //char *code;
 };
 
 void error(const char msg[]);
 void factor();
-void term(); // done
-void expression(); // done
-void condition(); // done
+void term();
+void expression();
+void condition();
 void statement();
 void block();
-void program(); // done
+void program();
 
 #endif // PARSER_H

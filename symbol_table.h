@@ -40,8 +40,6 @@ SymbolTableEntry* add_entry(SymbolTable *table, SymbolTableEntry entry);
 
 void calculate_offsets(SymbolTable *table);
 
-int get_num_args(SymbolTable *table);
-
 SymbolTable *symbol_table;
 
 #endif // SYMBOL_TABLE_H
