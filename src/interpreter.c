@@ -120,7 +120,7 @@ void run() {
                 --t; s[t] /= s[t + 1];
                 break;
             case OP_NEG:
-                --t; s[t] = -s[t];
+                s[t] = -s[t];
                 break;
             case OP_CV:
                 ++t; s[t] = s[t - 1];
